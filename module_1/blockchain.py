@@ -72,11 +72,11 @@ def mine_block():
     previous_hash = blockchain.hash(previous_block)
     new_block = blockchain.create_block(proof, previous_hash)
     response = {'message': 'Congratulations, you just mined a block!',
-                'block_index': block['index'],
-                'block_timestamp': block['timestamp'],
-                'proof': block['proof'],
-                'previous_hash': block['previous_hash']}
-    return jsonify(respone), 200
+                'block_index': new_block['index'],
+                'block_timestamp': new_block['timestamp'],
+                'proof': new_block['proof'],
+                'previous_hash': new_block['previous_hash']}
+    return jsonify(response), 200
 
 #getting the full blockchain
 @app.route('/get_chain', methods=['GET'])

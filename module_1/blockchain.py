@@ -58,6 +58,7 @@ class Blockchain:
 #2 mining
 #creating webapp
 app = Flask(__name__)
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 
 #creating blockchain
 blockchain = Blockchain()
@@ -78,8 +79,11 @@ def mine_block():
     return jsonify(respone), 200
 
 #getting the full blockchain
-@app.route('get_chain', methods=['GET'])
+@app.route('/get_chain', methods=['GET'])
 def get_chain():
     response = {'chain': blockchain.chain,
                 'chain_length': len(blockchain.chain)}
     return jsonify(response), 200
+
+#running the app
+app.run(host = '0.0.0.0', port = 5000)
